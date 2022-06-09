@@ -5,7 +5,9 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
+
 import java.math.BigDecimal;
+import br.edu.ifpb.padroes.visitor.Visitor;
 
 @Entity
 @Table(name = "product")
@@ -32,6 +34,8 @@ public abstract class Product {
     @Column(name = "price", nullable = false)
     @DecimalMin(value = "0.00", message = "*Preço não pode ser um número negativo")
     private BigDecimal price;
+
+    public abstract BigDecimal accept(Visitor visitor);
 
     public Long getId() {
         return id;
